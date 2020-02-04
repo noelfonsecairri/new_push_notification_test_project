@@ -1,0 +1,7 @@
+POST http://petstore-demo-endpoint.execute-api.com/petstore/pets
+Content-type: application/json
+
+{
+  "type": "dog",
+  "price": 249.99
+}

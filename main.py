@@ -26,17 +26,15 @@ access_token_info = credentials.get_access_token()
 # this is a randomly generated id to be passed to the payload
 channel_id = str(uuid.uuid4())
 token = access_token_info.access_token
-url_webhook = "https://api.noelfonseca.com/notifications"
-gfolder_id = "14gG8_SQwn7zPaRX_AvtyVSe91NbrUQZc"
-
+url_webhook = "https://api.noelfonseca.com/user"
+gfolder_id = "1IMniHYS6wBUG31MWd_4nTIkBgpc-Llrz"
 header = {
-    'Authorization': f'Bearer {token}',
+    'Auth': f'Bearer {token}',
     'Content-Type': 'application/json'
 }
-
 body = {
     "id": channel_id,
-    "expiration": ep(2019, 12, 20, 8, 53),
+    "expiration": ep(2020, 12, 20, 8, 53),
     "type": "web_hook",
     "address": f'{url_webhook}',
     "token": token
@@ -46,8 +44,8 @@ file_id = f'{gfolder_id}'
 
 response = drive_service.files().watch(fileId=gfolder_id, body=body).execute()
 
-#r = requests.post(url=f'https://www.googleapis.com/drive/v3/file/{file_id}/watch?pageToken=766', 
+r = requests.post(url=f'https://www.googleapis.com/drive/v3/file/{file_id}/watch?pageToken=766', 
                   data=json.dumps(body), headers=header)
 
-#pprint.pprint(r)
+pprint.pprint(r)
 pprint.pprint(response)
